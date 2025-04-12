@@ -94,6 +94,7 @@ const render = () => {
     pipes.map((pipe) => {
       pipe[0] -= speed;
 
+      // top pipe
       ctx.drawImage(
         img,
         432,
@@ -104,6 +105,18 @@ const render = () => {
         0,
         pipeWidth,
         pipe[1]
+      );
+      // bottom pipe
+      ctx.drawImage(
+        img,
+        432 + pipeWidth,
+        108,
+        pipeWidth,
+        canvas.height - pipe[1] + pipeGap,
+        pipe[0],
+        pipe[1] + pipeGap,
+        pipeWidth,
+        canvas.height - pipe[1] + pipeGap
       );
     });
   }
