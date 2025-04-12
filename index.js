@@ -118,8 +118,24 @@ const render = () => {
         pipeWidth,
         canvas.height - pipe[1] + pipeGap
       );
+
+      if (pipe[0] <= -pipeWidth) {
+        currentScore++;
+        bestScore = Math.max(bestScore, currentScore);
+
+        // remove pipe + create new one
+        pipes = [
+          ...pipes.slice(1),
+          [pipes[pipes.length - 1][0] + pipeGap + pipeWidth, pipeLoc()],
+        ];
+      }
     });
   }
+
+  document.getElementById("bestScore").innerHTML = `Meilleur : ${bestScore}`;
+  document.getElementById(
+    "currentScore"
+  ).innerHTML = `Actuel : ${currentScore}`;
 
   window.requestAnimationFrame(render);
 };
